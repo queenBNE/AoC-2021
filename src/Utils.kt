@@ -15,6 +15,11 @@ fun readLinesAsInt(fileName: String):List<Int> {
     return readLinesFromFile(fileName).map {s -> s.toInt()}
 }
 
+fun readLineAsInt(fileName: String):List<Int> {
+    val readLinesFromFile = readLinesFromFile(fileName)
+    return readLinesFromFile[0].split(",").map {s -> s.toInt()}
+}
+
 /**
  * Converts string to md5 hash.
  */
