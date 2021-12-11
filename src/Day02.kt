@@ -1,8 +1,8 @@
 import java.lang.Integer.max
 
 fun main() {
-    var input = readLinesFromFile("data/day02.txt")
-    var testInput = readLinesFromFile("data/day02_test.txt")
+    val input = readLinesFromFile("data/day02.txt")
+    val testInput = readLinesFromFile("data/day02_test.txt")
 
     fun part1(lines: List<String>):Int {
         var depth = 0

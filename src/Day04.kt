@@ -1,14 +1,14 @@
 fun main(){
-    var testInput = readLinesFromFile("data/day04_test.txt")
-    var input = readLinesFromFile("data/day04.txt" )
+    val testInput = readLinesFromFile("data/day04_test.txt")
+    val input = readLinesFromFile("data/day04.txt" )
 
     fun linesToSets(strings: List<String>): List<MutableSet<Int>> {
-        var result:MutableList<MutableSet<Int>> = mutableListOf()
+        val result:MutableList<MutableSet<Int>> = mutableListOf()
         for (i in 0..4) {
             result.add(mutableSetOf())
         }
         for (i in strings.indices) {
-            var list = strings[i].trim().split(Regex("\\s+")).map {str -> str.toInt()}
+            val list = strings[i].trim().split(Regex("\\s+")).map {str -> str.toInt()}
             result.add(list.toMutableSet())
             for (j in 0..4) {
                 result[j].add(list[j])
@@ -18,8 +18,8 @@ fun main(){
     }
 
     fun getBingoInput (lines: List<String>): Pair<List<Int>, MutableList<List<MutableSet<Int>>>> {
-        var draws:List<Int> = lines[0].split(",").map { str -> str.toInt() }
-        var cards:MutableList<List<MutableSet<Int>>> = mutableListOf()
+        val draws:List<Int> = lines[0].split(",").map { str -> str.toInt() }
+        val cards:MutableList<List<MutableSet<Int>>> = mutableListOf()
         for (i in 1 until lines.size - 2) {
             if (lines[i].isEmpty()) {
                 cards.add(linesToSets(lines.subList(i+1, i+6)))
@@ -30,12 +30,12 @@ fun main(){
 
     fun part1(bingoInput: Pair<List<Int>, MutableList<List<MutableSet<Int>>>>):Int {
         for (i in bingoInput.first.indices) {
-            var drawn = bingoInput.first[i]
+            val drawn = bingoInput.first[i]
             for (j in bingoInput.second.indices) {
                 for (set in bingoInput.second[j]) {
                     set.remove(drawn)
                     if (set.isEmpty()) {
-                        var all = mutableSetOf<Int>()
+                        val all = mutableSetOf<Int>()
                         for (set_ in bingoInput.second[j]) {
                             all.addAll(set_)
                         }
@@ -49,14 +49,14 @@ fun main(){
     }
 
     fun part2(bingoInput: Pair<List<Int>, MutableList<List<MutableSet<Int>>>>):Int {
-        var winTurnScore = mutableMapOf<Int,Pair<Int,Int>>()
+        val winTurnScore = mutableMapOf<Int,Pair<Int,Int>>()
         for (i in bingoInput.first.indices) {
-            var drawn = bingoInput.first[i]
+            val drawn = bingoInput.first[i]
             for (j in bingoInput.second.indices) {
                 for (set in bingoInput.second[j]) {
                     set.remove(drawn)
                     if (set.isEmpty() && !winTurnScore.containsKey(j)) {
-                        var all = mutableSetOf<Int>()
+                        val all = mutableSetOf<Int>()
                         for (set_ in bingoInput.second[j]) {
                             all.addAll(set_)
                         }
@@ -66,8 +66,8 @@ fun main(){
                 }
             }
         }
-        var maxTurn = -1;
-        var maxTurnScore = 0;
+        var maxTurn = -1
+        var maxTurnScore = 0
         for (turnScore in winTurnScore.values) {
             if (turnScore.first > maxTurn) {
                 maxTurn = turnScore.first

@@ -1,11 +1,11 @@
 import com.sun.org.apache.xalan.internal.lib.ExsltMath.power
 
 fun main() {
-    var input = readLinesFromFile("data/day03.txt")
-    var testInput = readLinesFromFile("data/day03_test.txt")
+    val input = readLinesFromFile("data/day03.txt")
+    val testInput = readLinesFromFile("data/day03_test.txt")
 
     fun part1(lines: List<String>):Double {
-        var counts: MutableList<Int> = mutableListOf()
+        val counts: MutableList<Int> = mutableListOf()
         for(i in 0 until lines[0].length) {
             counts.add(0)
         }
@@ -31,8 +31,8 @@ fun main() {
 
     fun getNext(lines: List<String>, pos:Int, mayority:Boolean): List<String>{
         var count = 0
-        var linesZeroes = mutableListOf<String>()
-        var linesOnes = mutableListOf<String>()
+        val linesZeroes = mutableListOf<String>()
+        val linesOnes = mutableListOf<String>()
         for(line in lines) {
             if(line[pos] == "0"[0]){
                 linesZeroes.add(line)

@@ -2,11 +2,11 @@ import java.lang.Integer.max
 import kotlin.math.abs
 
 fun main() {
-    var input = readLinesFromFile("data/day05.txt")
-    var testInput = readLinesFromFile("data/day05_test.txt")
+    val input = readLinesFromFile("data/day05.txt")
+    val testInput = readLinesFromFile("data/day05_test.txt")
 
     fun solve1(lines : List<String>, diagonal:Boolean) :Int {
-        var coordinates = lines.map { line -> toCoordinate(line) }
+        val coordinates = lines.map { line -> toCoordinate(line) }
         val boardSize = getBoardSize(coordinates)
         val board = emptyBoard(boardSize)
         for (c in coordinates) {
@@ -32,8 +32,8 @@ fun main() {
                 }
             } else if (diagonal) {
                 // (1,1) - (3,3) or (2,1) -- (4,3) or (2,3) -- (4,1)
-                var dirX = c.second.first - c.first.first
-                var dirY = c.second.second - c.first.second
+                val dirX = c.second.first - c.first.first
+                val dirY = c.second.second - c.first.second
                 if (abs(dirX) == abs(dirY)) {
                     for (i in 0 .. abs(dirX)) {
                         board[c.first.first + i*(dirX/abs(dirX))][c.first.second+i*(dirY/abs(dirY))] ++
@@ -61,9 +61,9 @@ fun main() {
 }
 
 fun emptyBoard(boardSize: Pair<Int,Int>): MutableList<MutableList<Int>> {
-    var board = mutableListOf<MutableList<Int>>()
+    val board = mutableListOf<MutableList<Int>>()
     for (i in 0..boardSize.second) {
-        var row = mutableListOf<Int>()
+        val row = mutableListOf<Int>()
         for (j in 0..boardSize.first) {
             row.add(0)
         }
@@ -85,8 +85,8 @@ fun getBoardSize(coordinates: List<Pair<Pair<Int, Int>, Pair<Int, Int>>>):Pair<I
 }
 
 fun toCoordinate(s:String):Pair<Pair<Int,Int>,Pair<Int,Int>> {
-    var (first, second) = s.split(" -> ")
-    var (x1, y1) = first.split(",").map{str -> str.toInt()}
-    var (x2, y2) = second.split(",").map{str -> str.toInt()}
+    val (first, second) = s.split(" -> ")
+    val (x1, y1) = first.split(",").map{str -> str.toInt()}
+    val (x2, y2) = second.split(",").map{str -> str.toInt()}
     return Pair(Pair(x1,y1), Pair(x2,y2))
 }

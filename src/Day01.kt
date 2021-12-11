@@ -12,7 +12,6 @@ fun main() {
     fun part1(input: List<Int>): Int = countIncrements(input, 1)
     fun part2(input: List<Int>): Int = countIncrements(input, 3)
 
-    // test if implementation meets criteria from the description, like:
     val testInput = readLinesAsInt("data/day01_test.txt")
     check(part1(testInput) == 7)
     check(part2(testInput) == 5)

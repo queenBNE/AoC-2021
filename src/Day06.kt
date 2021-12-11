@@ -1,9 +1,9 @@
 fun main() {
-    var testInput = readLineAsInt("data/day06_test.txt")
-    var input = readLineAsInt("data/day06.txt")
+    val testInput = readLineAsInt("data/day06_test.txt")
+    val input = readLineAsInt("data/day06.txt")
 
     fun populationTomorrow(currentPopulation: Map<Int, Long>) :Map<Int, Long>{
-        var populationTomorrow = mutableMapOf<Int, Long>()
+        val populationTomorrow = mutableMapOf<Int, Long>()
         for (ageGroupCount in currentPopulation.entries) {
             if (ageGroupCount.key > 0) {
                 populationTomorrow[ageGroupCount.key - 1] = ageGroupCount.value
