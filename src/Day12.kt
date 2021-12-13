@@ -1,9 +1,3 @@
-private val set: Set<String>
-    get() {
-        val visited = setOf("start")
-        return visited
-    }
-
 fun main() {
 
     fun inputToAdjacencyMap(lines : List<String>):Map<String, Set<String>>{
