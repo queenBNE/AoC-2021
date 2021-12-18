@@ -10,14 +10,14 @@ fun main() {
         var next = ""
         var depth = 0
         for (i in org.indices) {
-            var char = org.substring(i, i+1)
+            val char = org.substring(i, i+1)
             if (char == "[") {
                 depth ++
             } else if (char == "]") {
                 depth --
             }
             if (depth > 4 && allStartIndices.contains(i)) {
-                val match  = allRegularPairs.filter { m -> m.range.first == i }.first()!!
+                val match  = allRegularPairs.filter { m -> m.range.first == i }.first()
                 val (a,b) = match.destructured
                 var replaced = false
                 outer@for (j in 1 until i) {
@@ -72,13 +72,13 @@ fun main() {
             val first = match.range.first
             val last = match.range.last
             val value = match.value.toInt()
-            if (value % 2 == 0) {
+            return if (value % 2 == 0) {
                 val x = value / 2
-                return org.substring(0,first) + "[$x,$x]" + org.substring(last+1, org.length)
+                org.substring(0,first) + "[$x,$x]" + org.substring(last+1, org.length)
             } else {
                 val x = (value - 1) / 2
                 val y = (value + 1) / 2
-                return org.substring(0,first) + "[$x,$y]" + org.substring(last+1, org.length)
+                org.substring(0,first) + "[$x,$y]" + org.substring(last+1, org.length)
             }
 
         }
@@ -89,7 +89,7 @@ fun main() {
     check(split("[[[[0,7],4],[[7,8],[0,13]]],[1,1]]") == "[[[[0,7],4],[[7,8],[0,[6,7]]]],[1,1]]")
 
     fun reduce(org:String):String {
-        var curr:String = ""
+        var curr = ""
         var next = org
         while (next != curr) {
             var currLoop1 = ""
