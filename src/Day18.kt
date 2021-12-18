@@ -123,22 +123,16 @@ fun main() {
 
     fun magnitude(number:String):Long {
         var result = number
-        while(true) {
-            if (!regularPair.containsMatchIn(result)) {
-                return result.toLong()
-            }
-            val allRegularPairs = regularPair.findAll(result)
-            var offset = 0
-            for (match in allRegularPairs) {
-                val (a, b) = match.destructured
-                val magnitude = 3 * a.toLong() + 2 * b.toLong()
-                result = result.substring(0, match.range.first - offset) + magnitude + result.substring(
-                    match.range.last + 1 - offset,
-                    result.length
-                )
-                offset += match.range.last - match.range.first + 1 - magnitude.toString().length
-            }
+        while(regularPair.containsMatchIn(result)) {
+            val match = regularPair.find(result)!!
+            val (a, b) = match.destructured
+            val magnitude = 3 * a.toLong() + 2 * b.toLong()
+            result = result.substring(0, match.range.first) + magnitude + result.substring(
+                match.range.last + 1,
+                result.length
+            )
         }
+        return result.toLong()
     }
 
     check(magnitude("[9,1]") == 29L)
